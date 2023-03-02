@@ -1,6 +1,7 @@
 from graph_auth.schema import AuthMutation, AuthQuery
 import graphene
 
+
 class Query(
     AuthQuery,
     graphene.ObjectType,
@@ -16,4 +17,3 @@ class Mutation(
 
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
-

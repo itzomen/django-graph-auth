@@ -1,0 +1,10 @@
+Django==4.1.7
+
+django-filter==22.1
+
+PyJWT==2.5.0
+# >0.3.2 is required for Django 4.0 support and for graphene 3.0 support
+django-graphql-jwt==0.3.4
+
+graphene==3.2.1
+graphene-django==3.0.0
