@@ -9,3 +9,8 @@ This a replacement for [Django GraphQL Auth](https://github.com/PedroBern/django
 - [ ] Add a Notify Admin Aysnc function that sends emails to admins when Exceptions occur
 - [ ] Write Tests
 - [ ] Package the app for Pypi
+
+
+## Resources
+- [Reusing Django Apps](https://docs.djangoproject.com/en/4.1/intro/reusable-apps/)
+- [Installing Using Pip](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/)

@@ -17,7 +17,7 @@ from graphql_jwt.decorators import (login_required, superuser_required,
 from .constants import Messages, TokenAction
 from .exceptions import (EmailAlreadyInUse, TokenScopeError,
                          UserAlreadyVerified, UserNotVerified)
-from .graphql.base import (BaseRegister, PasswordResetBase,
+from .base import (BaseRegister, PasswordResetBase,
                            ResendActivationEmailBase,
                            SendPasswordResetEmailBase, VerifyAccountBase)
 from .models import UserStatus
@@ -138,6 +138,7 @@ class Register(BaseRegister):
             #     ],
             #     countdown=10,
             # )
+            print("Exception details: %s" % str(e))
             return cls(
                 success=False,
                 errors=[Messages.SERVER_ERROR],
@@ -186,6 +187,7 @@ class VerifyAccount(VerifyAccountBase):
             #     ],
             #     countdown=10,
             # )
+            print("Exception details: %s" % str(e))
             return cls(
                 success=False,
                 errors=[Messages.SERVER_ERROR],
@@ -231,6 +233,7 @@ class ResendActivationEmail(ResendActivationEmailBase):
             #     ],
             #     countdown=10,
             # )
+            print("Exception details: %s" % str(e))
             return cls(
                 success=False,
                 errors=[Messages.SERVER_ERROR],
@@ -283,6 +286,7 @@ class SendPasswordResetEmail(SendPasswordResetEmailBase):
             #     ],
             #     countdown=10,
             # )
+            print("Exception details: %s" % str(e))
             return cls(
                 success=False,
                 errors=[Messages.SERVER_ERROR],
@@ -336,6 +340,7 @@ class PasswordReset(PasswordResetBase):
             #     ],
             #     countdown=10,
             # )
+            print("Exception details: %s" % str(e))
             return cls(
                 success=False,
                 errors=[Messages.SERVER_ERROR],

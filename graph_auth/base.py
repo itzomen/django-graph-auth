@@ -1,6 +1,6 @@
 import graphene
 
-from ..type import ExpectedErrorType
+from .type import ExpectedErrorType
 
 # TODO: if for custom was here
 OutputErrorType = ExpectedErrorType

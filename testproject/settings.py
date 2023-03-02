@@ -35,8 +35,10 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    "django.contrib.sites",
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
 
     # 
     "graphene_django",
@@ -138,25 +140,27 @@ GRAPHENE = {
 }
 
 AUTHENTICATION_BACKENDS = [
-    "graphql_auth.backends.GraphQLAuthBackend",
+    "graphql_jwt.backends.JSONWebTokenBackend",
+    # TODO: Maybe create custom backend
+    # "graph_auth.backends.GraphQLAuthBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
 
 GRAPHQL_JWT = {
     "JWT_VERIFY_EXPIRATION": True,
     "JWT_LONG_RUNNING_REFRESH_TOKEN": True,
-    "JWT_ALLOW_ANY_CLASSES": [
-        "graphql_auth.mutations.Register",
-        "graphql_auth.mutations.VerifyAccount",
-        "graphql_auth.mutations.ResendActivationEmail",
-        "graphql_auth.mutations.SendPasswordResetEmail",
-        "graphql_auth.mutations.PasswordReset",
-        "graphql_auth.mutations.ObtainJSONWebToken",
-        "graphql_auth.mutations.VerifyToken",
-        "graphql_auth.mutations.RefreshToken",
-        "graphql_auth.mutations.RevokeToken",
-        "graphql_auth.mutations.VerifySecondaryEmail",
-    ],
+    # "JWT_ALLOW_ANY_CLASSES": [
+    #     "graph_auth.mutations.Register",
+    #     "graph_auth.mutations.VerifyAccount",
+    #     "graph_auth.mutations.ResendActivationEmail",
+    #     "graph_auth.mutations.SendPasswordResetEmail",
+    #     "graph_auth.mutations.PasswordReset",
+    #     "graph_auth.mutations.ObtainJSONWebToken",
+    #     "graph_auth.mutations.VerifyToken",
+    #     "graph_auth.mutations.RefreshToken",
+    #     "graph_auth.mutations.RevokeToken",
+    #     "graph_auth.mutations.VerifySecondaryEmail",
+    # ],
 }
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

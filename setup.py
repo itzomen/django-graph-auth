@@ -21,32 +21,32 @@ tests_require = [
     "coveralls",
 ]
 
-dev_requires = ["black==19.3b0", "flake8==3.7.7"] + tests_require
+dev_requires = ["black==22.12.0", "flake8==6.0.0"] + tests_require
 
 setup(
-    name="django-graphql-auth",
-    version=get_version("graphql_auth"),
+    name="django-graph-auth",
+    version=get_version("graph_auth"),
     license="MIT",
-    description="Graphql and relay authentication with Graphene for Django.",
+    description="Graphql and relay (coming soon) authentication with Graphene for Django.",
     long_description=open("README.rst").read(),
     long_description_content_type="text/x-rst",
-    author="pedrobern",
-    author_email="pedrobermoreira@gmail.com",
-    maintainer="pedrobern",
-    url="https://github.com/PedroBern/django-graphql-auth",
+    author="itzomen",
+    author_email="peng@traleor.com",
+    maintainer="itzomen",
+    url="https://github.com/itzomen/django-graph-auth",
     project_urls=OrderedDict(
         (
-            ("Documentation", "https://django-graphql-auth.readthedocs.io/en/latest/"),
-            ("Issues", "https://github.com/PedroBern/django-graphql-auth/issues"),
+            ("Documentation", "https://github.com/itzomen/django-graph-auth"),
+            ("Issues", "https://github.com/itzomen/django-graph-auth/issues"),
         )
     ),
     packages=find_packages(exclude=["tests*"]),
     install_requires=[
-        "Django>=2.2.0",
-        "django-graphql-jwt>=0.3.2,<0.4.0",
-        "django-filter>=2.2.0",
-        "graphene_django>=2.1.8",
-        "graphene>=2.1.8",
+        "Django>=4.1.7",
+        "django-graphql-jwt>=0.3.4,<0.4.0",
+        "django-filter>=22.1",
+        "graphene_django>=3.0.0",
+        "graphene>=3.2.1",
     ],
     tests_require=tests_require,
     classifiers=[
@@ -56,12 +56,12 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Framework :: Django",
-        "Framework :: Django :: 2.2",
         "Framework :: Django :: 3.0",
+        "Framework :: Django :: 4.1",
     ],
     keywords="api graphql rest relay graphene auth",
     zip_safe=False,
