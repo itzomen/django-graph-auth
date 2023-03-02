@@ -1,6 +1,26 @@
 # Overview
 This a replacement for [Django GraphQL Auth](https://github.com/PedroBern/django-graphql-auth) that works with latest Django and Graphene
 
+## Quick Start
+
+```bash
+# clone the repo
+git clone 
+# install deps
+pip install -r requirements.txt
+# Build app
+python setup.py sdist
+# Install it
+python -m pip install  dist/django-graph-auth-0.1.0.tar.gz
+# Test app migrate
+python testproject/manage.py migrate
+# 
+python testproject/manage.py runserver
+# Install in a custom project
+python -m pip install  path/to/dist/django-graph-auth-0.1.0.tar.gz
+
+```
+
 
 ## TODO
 - [ ] Update ReadMe
