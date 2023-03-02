@@ -24,6 +24,7 @@ python -m pip install  path/to/dist/django-graph-auth-0.1.0.tar.gz
 
 ## TODO
 - [ ] Update ReadMe
+- [ ] Check why `get_current_site` throws Exception
 - [ ] Test the `Queries` i.e Me, UserStatus, User
 - [ ] Test the `Mutations` i.e Register, Verify Account, Resend Activation, Send Password Reset, Verify Token, Password Reset, Login and Logout
 - [ ] Add Documentation

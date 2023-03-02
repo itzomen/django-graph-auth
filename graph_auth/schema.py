@@ -2,7 +2,7 @@ from smtplib import SMTPException
 
 import graphene
 import graphql_jwt
-from django.conf import settings
+from .settings import graphql_auth_settings as app_settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.signing import BadSignature, SignatureExpired
@@ -101,12 +101,12 @@ class Register(BaseRegister):
                 email=email, password=password, username=username
             )
 
-            send_activation = settings.SEND_ACTIVATION_EMAIL is True and email
+            send_activation = app_settings.SEND_ACTIVATION_EMAIL is True and email
             if send_activation:
                 user.status.send_activation_email(info)
 
             user_registered.send(sender=cls, user=user)
-            if settings.ALLOW_LOGIN_NOT_VERIFIED:
+            if app_settings.ALLOW_LOGIN_NOT_VERIFIED:
                 payload = cls.login_on_register(root, info, **kwargs)
                 print("Pay", payload)
 
@@ -312,7 +312,7 @@ class PasswordReset(PasswordResetBase):
             payload = get_token_payload(
                 token,
                 TokenAction.PASSWORD_RESET,
-                settings.EXPIRATION_PASSWORD_RESET_TOKEN,
+                app_settings.EXPIRATION_PASSWORD_RESET_TOKEN,
             )
             user = UserModel._default_manager.get(**payload)
             revoke_user_refresh_token(user)

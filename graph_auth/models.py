@@ -2,7 +2,6 @@ import time
 
 from django.conf import settings as django_settings
 from django.contrib.auth import get_user_model
-from django.contrib.sites.models import Site
 from django.contrib.sites.shortcuts import get_current_site
 from django.db import models, transaction
 from django.template.loader import render_to_string
@@ -49,15 +48,15 @@ class UserStatus(models.Model):
         #
         if async_email_send_func:
             return async_email_send_func.delay(
-            subject=_subject,
-            from_email=app_settings.EMAIL_FROM,
-            message=message,
-            html_message=html_message,
-            recipient_list=(
-                recipient_list or [getattr(self.user, UserModel.EMAIL_FIELD)]
-            ),
-        )
-                            
+                subject=_subject,
+                from_email=app_settings.EMAIL_FROM,
+                message=message,
+                html_message=html_message,
+                recipient_list=(
+                    recipient_list or [getattr(self.user, UserModel.EMAIL_FIELD)]
+                ),
+            )
+
         return send_mail(
             subject=_subject,
             from_email=app_settings.EMAIL_FROM,
@@ -72,18 +71,15 @@ class UserStatus(models.Model):
     # TODO: Find way to customize this function for complexe setup
     def get_email_context(self, info, path, action, **kwargs):
         token = get_token(self.user, action, **kwargs)
-        # NOTE: Clear makes sure the current site is fetched from database
-        # Site.objects.clear_cache()
-        site_current = Site.objects.get_current()
-        print("Site Current", site_current)
-        site = get_current_site(info.context)
+        # TODO: Check why it throws Exeption
+        # site = get_current_site(info.context)
         return {
             "user": self.user,
             "request": info.context,
             "token": token,
             "port": info.context.get_port(),
-            "site_name": site.name,
-            "domain": site.domain,
+            "site_name": app_settings.WEBSITE_NAME,
+            "domain": app_settings.ACTIVATION_DOMAIN,
             "protocol": "https" if info.context.is_secure() else "http",
             "path": path,
             "timestamp": time.time(),

@@ -18,6 +18,8 @@ from datetime import timedelta
 # Copied shamelessly from Graphene / Django REST Framework
 
 DEFAULTS = {
+    "WEBSITE_NAME": "Django",
+    "ACTIVATION_DOMAIN": "localhost:8000",
     # if allow to login without verification,
     # the register mutation will return a token
     "ALLOW_LOGIN_NOT_VERIFIED": True,
