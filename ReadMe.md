@@ -4,6 +4,8 @@ This a replacement for [Django GraphQL Auth](https://github.com/PedroBern/django
 
 ## TODO
 - [ ] Update ReadMe
+- [ ] Test the `Queries` i.e Me, UserStatus, User
+- [ ] Test the `Mutations` i.e Register, Verify Account, Resend Activation, Send Password Reset, Verify Token, Password Reset, Login and Logout
 - [ ] Add Documentation
 - [ ] Test usage of `EMAIL_ASYNC_TASK` to send emails Asynchronously
 - [ ] Add a Notify Admin Aysnc function that sends emails to admins when Exceptions occur
