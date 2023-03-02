@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 
+    "graphene_django",
+    # adds filtering with nodes and edges
+    "django_filters",
+    # custom
+    "graph_auth",
 ]
 
 MIDDLEWARE = [
@@ -49,12 +56,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'testproject.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'testproject.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 
 # Database
@@ -121,3 +128,41 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# custom settings start here
+
+GRAPHENE = {
+    "SCHEMA": "schema.schema",
+    "MIDDLEWARE": ["graphql_jwt.middleware.JSONWebTokenMiddleware"],
+}
+
+AUTHENTICATION_BACKENDS = [
+    "graphql_auth.backends.GraphQLAuthBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
+
+GRAPHQL_JWT = {
+    "JWT_VERIFY_EXPIRATION": True,
+    "JWT_LONG_RUNNING_REFRESH_TOKEN": True,
+    "JWT_ALLOW_ANY_CLASSES": [
+        "graphql_auth.mutations.Register",
+        "graphql_auth.mutations.VerifyAccount",
+        "graphql_auth.mutations.ResendActivationEmail",
+        "graphql_auth.mutations.SendPasswordResetEmail",
+        "graphql_auth.mutations.PasswordReset",
+        "graphql_auth.mutations.ObtainJSONWebToken",
+        "graphql_auth.mutations.VerifyToken",
+        "graphql_auth.mutations.RefreshToken",
+        "graphql_auth.mutations.RevokeToken",
+        "graphql_auth.mutations.VerifySecondaryEmail",
+    ],
+}
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+GRAPHQL_AUTH = {
+    # TODO: Needs to be tested
+    # "EMAIL_ASYNC_TASK": "tasks.async_email_send"
+}
+
